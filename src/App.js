@@ -16,8 +16,15 @@ export default () => {
             alt=""
           />
           <div className="header--buttons">
-            {" "}
-            <div className="header--btn"></div>
+            <div className="header--btn">
+              <DonutLargeIcon style={{ color: "#919191" }} />
+            </div>
+            <div className="header--btn">
+              <ChatIcon style={{ color: "#919191" }} />
+            </div>
+            <div className="header--btn">
+              <MoreVertIcon style={{ color: "#919191" }} />
+            </div>
           </div>
         </header>
         <div className="search">....</div>
