@@ -5,22 +5,7 @@
 body {
   background-color: #d2dbdc;
   margin: 0;
-  font-family: "Segoe UI", Helvetica Neue, Helvetica, Lucida Grande, Arial,
-    Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.app-window {
-  display: flex;
-  height: 100vh;
-  background-color: #ededee;
-}
-
-.sidebar {
-  width: 35%;
-  max-width: 415px;
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid #ddd;
+  font-family: "Segoe UI", Helvetica Neue, Helvetica, Lucida Grande, Arial;
 }
 
 header {
@@ -38,10 +23,9 @@ header {
   cursor: pointer;
 }
 
-.header--button {
+.header--buttons {
   display: flex;
 }
-
 .header--btn {
   width: 40px;
   height: 40px;
@@ -51,6 +35,19 @@ header {
   align-items: center;
   cursor: pointer;
 }
+.app-window {
+  display: flex;
+  height: 100vh;
+  background-color: #ededed;
+}
 
-.contentearea {
+.sidebar {
+  width: 35%;
+  max-width: 415px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+.contentarea {
 }

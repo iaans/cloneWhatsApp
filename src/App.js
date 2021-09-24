@@ -27,11 +27,13 @@ export default () => {
             </div>
           </div>
         </header>
-        <div className="search">....</div>
 
-        <div className="chatlist">....</div>
+        <div className="search">{"..."}</div>
+
+        <div className="chatlist">{"..."}</div>
       </div>
-      <div className="contentarea">....</div>
+      {/* divisão 1*/}
+      <div className="contentarea">....</div> {/* divisão 2*/}
     </div>
   );
 };
