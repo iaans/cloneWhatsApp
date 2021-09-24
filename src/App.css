@@ -49,6 +49,26 @@ header {
   border-right: 1px solid #ddd;
 }
 
+.sidebar-content {
+  overflow: auto;
+}
+/* 
+.sidebar-content::-webkit-scrollbar {
+  width: 2em;
+} */
+
+.sidebar-content::-webkit-scrollbar {
+  width: 0.5em;
+}
+.sidebar-content::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+.sidebar-content::-webkit-scrollbar-thumb {
+  background-color: #6e6e6e;
+  border-radius: 100px;
+}
+
 .search {
   background-color: #f6f6f6;
   border-bottom: 1px solid #eee;

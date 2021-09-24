@@ -12,7 +12,46 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default () => {
-  const [chatlist, setChatlist] = useState([{}, {}, {}, {}]);
+  const [chatlist, setChatlist] = useState([
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+  ]);
   return (
     <div className="app-window">
       <div className="sidebar">
@@ -44,11 +83,12 @@ export default () => {
             />
           </div>
         </div>
-
-        <div className="chatlist">
-          {chatlist.map((item, key) => (
-            <ChatlistItem key={key} />
-          ))}
+        <div className="sidebar-content">
+          <div className="chatlist">
+            {chatlist.map((item, key) => (
+              <ChatlistItem key={key} />
+            ))}
+          </div>
         </div>
       </div>
       {/* divisão 1*/}
