@@ -20,7 +20,11 @@
 }
 
 .chatList .chatListItem:hover {
-  background-color: #f5f5f5;
+  background-color: #bdbcbc;
+}
+
+.chatListItem.active {
+  background-color: #bdbcbc;
 }
 .chatListItem--avatar {
   width: 50px;
