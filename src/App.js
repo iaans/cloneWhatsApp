@@ -4,6 +4,8 @@ import "./App.css";
 
 //Import components
 import ChatlistItem from "./components/ChatlistItem";
+import ChatIntro from "./components/ChatIntro";
+import ChatWindow from "./components/ChatWindow";
 
 //Import icons from Mui
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
@@ -13,45 +15,31 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default () => {
   const [chatlist, setChatlist] = useState([
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
+    {
+      chatId: 1,
+      title: "Fulano de tal",
+      image: "https://www.w3schools.com/howto/img_avatar.png",
+    },
+    {
+      chatId: 2,
+      title: "Fulano de tal",
+      image: "https://www.w3schools.com/howto/img_avatar.png",
+    },
+    {
+      chatId: 3,
+      title: "Fulano de tal",
+      image: "https://www.w3schools.com/howto/img_avatar.png",
+    },
+    {
+      chatId: 4,
+      title: "Fulano de tal",
+      image: "https://www.w3schools.com/howto/img_avatar.png",
+    },
   ]);
+
+  const [activeChat, setActiveChat] = useState({});
+  console.log("🚀 ~ file: App.js ~ line 41 ~ activeChat", activeChat);
+
   return (
     <div className="app-window">
       <div className="sidebar">
@@ -86,13 +74,19 @@ export default () => {
         <div className="sidebar-content">
           <div className="chatlist">
             {chatlist.map((item, key) => (
-              <ChatlistItem key={key} />
+              <ChatlistItem
+                key={key}
+                onClick={() => setActiveChat(chatlist[key])}
+              />
             ))}
           </div>
         </div>
       </div>
-      {/* divisão 1*/}
-      <div className="contentarea">....</div> {/* divisão 2*/}
+      <div className="contentarea">
+        {activeChat.chatId !== undefined && <ChatWindow />}
+
+        {activeChat.chatId === undefined && <ChatIntro />}
+      </div>
     </div>
   );
 };
