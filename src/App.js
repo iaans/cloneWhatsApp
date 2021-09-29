@@ -38,7 +38,7 @@ export default () => {
   ]);
 
   const [activeChat, setActiveChat] = useState({});
-  console.log("🚀 ~ file: App.js ~ line 41 ~ activeChat", activeChat);
+  // console.log("🚀 ~ file: App.js ~ line 41 ~ activeChat", activeChat);
 
   return (
     <div className="app-window">
