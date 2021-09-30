@@ -1,6 +1,7 @@
 //Import default
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./ChatWindow.css";
+import MessageItem from "./MessageItem";
 
 //Other imports
 import EmojiPicker from "emoji-picker-react";
@@ -14,9 +15,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 
-export default () => {
+export default ({ user }) => {
+  const body = useRef();
+
   let recognition = null;
 
+  //Speech
   let SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
   if (SpeechRecognition !== undefined) {
@@ -26,6 +30,51 @@ export default () => {
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [text, setText] = useState("");
   const [listening, setListening] = useState();
+  const [list, setList] = useState([
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+    { author: 123, body: "bla bla" },
+    { author: 123, body: "bla bla bla bla bla" },
+    { author: 1234, body: "bla bla bla bla" },
+  ]);
+
+  useEffect(() => {
+    if (body.current.scrollHeight > body.current.offsetHeight) {
+      body.current.scrollTop =
+        body.current.scrollHeight - body.current.offsetHeight;
+    }
+  }, [list]);
 
   const handleEmojiClick = (e, emojiObject) => {
     setText(text + emojiObject.emoji);
@@ -79,9 +128,12 @@ export default () => {
             <MoreVertIcon style={{ color: "#919191" }} />
           </div>
         </div>
-        {}
       </div>
-      <div className="chatWindow--body"></div>
+      <div ref={body} className="chatWindow--body sidebar-content">
+        {list.map((item, key) => (
+          <MessageItem key={key} data={item} user={user} />
+        ))}
+      </div>
 
       <div
         className="chatWindow--emojiarea"

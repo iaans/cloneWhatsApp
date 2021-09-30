@@ -6,7 +6,7 @@ export default () => {
   return (
     <div className="chatIntro">
       <img src={imgWpp} />
-      <h1>Mantenha seu celular conectasdasdasdadsado</h1>
+      <h1>Mantenha seu celular conectado</h1>
       <h2>
         O WhatsApp Web conecta ao seu telefone para sicronizar suas mensagens.
         <br />

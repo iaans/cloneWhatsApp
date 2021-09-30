@@ -6,6 +6,7 @@ import "./App.css";
 import ChatlistItem from "./components/ChatlistItem";
 import ChatIntro from "./components/ChatIntro";
 import ChatWindow from "./components/ChatWindow";
+import NewChat from "./components/NewChat";
 
 //Import icons from Mui
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
@@ -39,16 +40,19 @@ export default () => {
 
   const [activeChat, setActiveChat] = useState({});
   // console.log("🚀 ~ file: App.js ~ line 41 ~ activeChat", activeChat);
+  const [user, setUser] = useState({
+    id: 1234,
+    avatar:
+      "https://lh3.googleusercontent.com/ogw/ADea4I7G5PVfwMg0KaNW65osqTY2bhGQFdR5FkK06efaxw=s83-c-mo",
+    name: "Neymar",
+  });
 
   return (
     <div className="app-window">
       <div className="sidebar">
+        <NewChat />
         <header>
-          <img
-            className="header--avatar"
-            src="https://www.w3schools.com/howto/img_avatar.png"
-            alt=""
-          />
+          <img className="header--avatar" src={user.avatar} alt="" />
           <div className="header--buttons">
             <div className="header--btn">
               <DonutLargeIcon style={{ color: "#919191" }} />
@@ -85,7 +89,7 @@ export default () => {
         </div>
       </div>
       <div className="contentarea">
-        {activeChat.chatId !== undefined && <ChatWindow />}
+        {activeChat.chatId !== undefined && <ChatWindow user={user} />}
 
         {activeChat.chatId === undefined && <ChatIntro />}
       </div>
