@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   border-right: 1px solid #ddd;
+  transition: 0.3ms;
 }
 
 .newChat--head {
@@ -25,6 +26,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: 0.3ms;
 }
 
 .newChat--headtitle {
@@ -40,6 +42,7 @@
 .newChat--list {
   flex: 1;
   overflow-y: auto;
+  transition: 0.03ms;
 }
 
 .newChat--item {

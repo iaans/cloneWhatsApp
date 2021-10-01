@@ -7,6 +7,8 @@ import ChatlistItem from "./components/ChatlistItem";
 import ChatIntro from "./components/ChatIntro";
 import ChatWindow from "./components/ChatWindow";
 import NewChat from "./components/NewChat";
+import Login from "./components/Login";
+import Api from "./Api";
 
 //Import icons from Mui
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
@@ -40,24 +42,44 @@ export default () => {
 
   const [activeChat, setActiveChat] = useState({});
   // console.log("🚀 ~ file: App.js ~ line 41 ~ activeChat", activeChat);
-  const [user, setUser] = useState({
-    id: 1234,
-    avatar:
-      "https://lh3.googleusercontent.com/ogw/ADea4I7G5PVfwMg0KaNW65osqTY2bhGQFdR5FkK06efaxw=s83-c-mo",
-    name: "Neymar",
-  });
+  const [user, setUser] = useState(null);
+
+  const [showNewChat, setShowNewChat] = useState(false);
+
+  const handleNewChat = () => {
+    setShowNewChat(true);
+  };
+
+  const handleLoginData = async (u) => {
+    let newUser = {
+      id: u.uid,
+      name: u.displayName,
+      avatar: u.photoURL,
+    };
+    await Api.addUser(newUser);
+    setUser(newUser);
+  };
+
+  if (user === null) {
+    return <Login onReceive={handleLoginData} />;
+  }
 
   return (
     <div className="app-window">
       <div className="sidebar">
-        <NewChat />
+        <NewChat
+          chatlist={chatlist}
+          user={user}
+          show={showNewChat}
+          setShow={setShowNewChat}
+        />
         <header>
           <img className="header--avatar" src={user.avatar} alt="" />
           <div className="header--buttons">
             <div className="header--btn">
               <DonutLargeIcon style={{ color: "#919191" }} />
             </div>
-            <div className="header--btn">
+            <div onClick={handleNewChat} className="header--btn">
               <ChatIcon style={{ color: "#919191" }} />
             </div>
             <div className="header--btn">
