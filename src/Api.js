@@ -79,6 +79,7 @@ export default {
         if (doc.exists) {
           let data = doc.data();
           if (data.chats) {
+            console.log(data.chats);
             setChatList(data.chats);
           }
         }
