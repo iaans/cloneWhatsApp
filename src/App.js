@@ -1,6 +1,7 @@
 //Import default
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import "./App.js";
 
 //Import components
 import ChatlistItem from "./components/ChatlistItem";
@@ -17,34 +18,25 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default () => {
-  const [chatlist, setChatlist] = useState([
-    {
-      chatId: 1,
-      title: "Fulano de tal",
-      image: "https://www.w3schools.com/howto/img_avatar.png",
-    },
-    {
-      chatId: 2,
-      title: "Fulano de tal",
-      image: "https://www.w3schools.com/howto/img_avatar.png",
-    },
-    {
-      chatId: 3,
-      title: "Fulano de tal",
-      image: "https://www.w3schools.com/howto/img_avatar.png",
-    },
-    {
-      chatId: 4,
-      title: "Fulano de tal",
-      image: "https://www.w3schools.com/howto/img_avatar.png",
-    },
-  ]);
+  const [chatlist, setChatList] = useState([]);
 
   const [activeChat, setActiveChat] = useState({});
   // console.log("🚀 ~ file: App.js ~ line 41 ~ activeChat", activeChat);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    id: "6TznDs7NJAexE8xkKkIg5fYoG733",
+    name: "Ian",
+    avatar: "https://graph.facebook.com/1766799826858821/picture",
+  });
 
   const [showNewChat, setShowNewChat] = useState(false);
+
+  useEffect(() => {
+    if (user !== null) {
+      let unsub = Api.onChatList(user.id, setChatList);
+      return unsub;
+    }
+  }, [user]);
 
   const handleNewChat = () => {
     setShowNewChat(true);
@@ -111,7 +103,9 @@ export default () => {
         </div>
       </div>
       <div className="contentarea">
-        {activeChat.chatId !== undefined && <ChatWindow user={user} />}
+        {activeChat.chatId !== undefined && (
+          <ChatWindow user={user} data={activeChat} />
+        )}
 
         {activeChat.chatId === undefined && <ChatIntro />}
       </div>

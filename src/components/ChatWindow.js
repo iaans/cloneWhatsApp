@@ -3,6 +3,9 @@ import React, { useEffect, useState, useRef } from "react";
 import "./ChatWindow.css";
 import MessageItem from "./MessageItem";
 
+// Import Components
+import Api from "../Api.js";
+
 //Other imports
 import EmojiPicker from "emoji-picker-react";
 
@@ -15,7 +18,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 
-export default ({ user }) => {
+export default ({ user, data }) => {
   const body = useRef();
 
   let recognition = null;
@@ -30,44 +33,13 @@ export default ({ user }) => {
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [text, setText] = useState("");
   const [listening, setListening] = useState();
-  const [list, setList] = useState([
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-    { author: 123, body: "bla bla" },
-    { author: 123, body: "bla bla bla bla bla" },
-    { author: 1234, body: "bla bla bla bla" },
-  ]);
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    setList([]);
+    let unsub = Api.onChatContent(data.chatId, setList);
+    return unsub;
+  }, [data.chatId]);
 
   useEffect(() => {
     if (body.current.scrollHeight > body.current.offsetHeight) {
@@ -109,12 +81,10 @@ export default ({ user }) => {
     <div className="chatWindow">
       <div className="chatWindow--header">
         <div className="chatWindow--headerinfo">
-          <img
-            className="chatWindow--avatar"
-            src="https://www.w3schools.com/howto/img_avatar.png"
-            alt=""
-          />
-          <div className="chatWindow--name">Ian Augusto</div>
+          <img className="chatWindow--avatar" src={data.image} alt="" />
+          <div className="chatWindow--name">
+            {data.title} - {data.chatId}
+          </div>
         </div>
 
         <div className="chatWindow--headerbuttons">
