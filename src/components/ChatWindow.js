@@ -34,10 +34,11 @@ export default ({ user, data }) => {
   const [text, setText] = useState("");
   const [listening, setListening] = useState();
   const [list, setList] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     setList([]);
-    let unsub = Api.onChatContent(data.chatId, setList);
+    let unsub = Api.onChatContent(data.chatId, setList, setUsers);
     return unsub;
   }, [data.chatId]);
 
@@ -74,8 +75,18 @@ export default ({ user, data }) => {
       recognition.start();
     }
   };
-
-  const handleSendClick = () => {};
+  const handleInputKeyUp = (e) => {
+    if (e.keyCode == 13) {
+      handleSendClick();
+    }
+  };
+  const handleSendClick = () => {
+    if (text !== "") {
+      Api.sendMessage(data, user.id, "text", text, users);
+      setText("");
+      setEmojiOpen(false);
+    }
+  };
 
   return (
     <div className="chatWindow">
@@ -140,6 +151,7 @@ export default ({ user, data }) => {
             placeholder="Digite uma mensagem."
             value={text}
             onChange={(e) => setText(e.target.value)}
+            onKeyUp={handleInputKeyUp}
           />
         </div>
 
