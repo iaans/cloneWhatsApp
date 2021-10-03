@@ -21,7 +21,6 @@ export default () => {
   const [chatlist, setChatList] = useState([]);
 
   const [activeChat, setActiveChat] = useState({});
-  // console.log("🚀 ~ file: App.js ~ line 41 ~ activeChat", activeChat);
   // const [user, setUser] = use  State(null);
   const [user, setUser] = useState({
     id: "6TznDs7NJAexE8xkKkIg5fYoG733",
