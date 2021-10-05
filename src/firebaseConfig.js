@@ -1,8 +1,8 @@
 export default {
-  apiKey: "AIzaSyDXqof0VoSjiKrd5QnrGx3UDUctuJVr5pk",
-  authDomain: "whatsappclone-8c2a3.firebaseapp.com",
-  projectId: "whatsappclone-8c2a3",
-  storageBucket: "whatsappclone-8c2a3.appspot.com",
-  messagingSenderId: "841469284667",
-  appId: "1:841469284667:web:7747c1af1e5d2b0ebb671e",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
